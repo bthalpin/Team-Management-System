@@ -1,26 +1,26 @@
-const card = ({name,role,id,email,officeNumber,github,school}) =>{
-
+const card = (employee) =>{
+    // const {name,role,id,email,officeNumber,github,location} = employee
     let roleSpecificVariable;
-    if (officeNumber){
-        roleSpecificVariable = 'Office Number: '+officeNumber;
-    }else if (github){
-        roleSpecificVariable = 'GitHub: '+github
+    if (employee.getRole() === 'Manager'){
+        roleSpecificVariable = 'Office Number: '+employee.getOfficeNumber();
+    }else if (employee.getRole()==='Engineer'){
+        roleSpecificVariable = 'GitHub: '+employee.getGithub()
     }else{
-        roleSpecificVariable = 'School: '+school
+        roleSpecificVariable = 'School: '+employee.getSchool()
     }
 
     return (
 `<section class="card">
     <section class="card-head">
-        <h2>${name}</h2>
-        <h3>${role}</h3>
+        <h2>${employee.getName()}</h2>
+        <h3>${employee.getRole()}</h3>
     </section>
     <section class="card-content">
         
         <section>
             <ul>
-                <li>ID: ${id}</li>
-                <li>Email: ${email}</li>
+                <li>ID: ${employee.getId()}</li>
+                <li>Email: ${employee.getEmail()}</li>
                 <li>${roleSpecificVariable}</li>
             </ul>
         </section>
