@@ -1,6 +1,6 @@
-const Manager = require('./lib/manager');
-const Engineer = require('./lib/engineer');
-const Intern = require('./lib/intern');
+// const Manager = require('./lib/manager');
+// const Engineer = require('./lib/engineer');
+// const Intern = require('./lib/intern');
 const addStaff = require('./src/addStaff/addStaff');
 
 // // const emp1 = new Employee();
@@ -11,8 +11,8 @@ const addStaff = require('./src/addStaff/addStaff');
 
 // console.log(man1,emp2)
 // man1.getName()
-const inquirer = require('inquirer');
-const fs = require('fs');
+// const inquirer = require('inquirer');
+// const fs = require('fs');
 
 
 // let a = "<html><head></head><body>"

@@ -2,8 +2,10 @@ const Manager = require('../../lib/manager');
 const Engineer = require('../../lib/engineer');
 const Intern = require('../../lib/intern');
 const inquirer = require('inquirer')
-const fs = require('fs');
+const createFile = require('../createFile/createFile');
+const appendFile = require('../createFile/appendFile');
 const htmlPage = require('../../src/html/htmlPage');
+const fs = require('fs');
 
 let teamName = 'My Team'
 let staff =[]
@@ -57,13 +59,21 @@ const addStaff = (currentRole='Manager') => {
                     newEmployee = new Intern(answers.location,answers.name,answers.email)
                 }
                 staff.push(newEmployee)
+                // fs.appendFile('staff.json',JSON.stringify(newEmployee),(err)=>{
+                //     err?console.log(err):console.log('Staff added')
+                // appendFile.appendFile('./src/createFile/staff.json',newEmployee,'Staff Added!',true)
+                // })
                 // currentRole=answers.role
                 if(answers.addStaff!=='Never mind, no more staff needed'){
                     addStaff(answers.addStaff)
                 }else{
-                    fs.writeFile('index.html',htmlPage(teamName,staff),err=>{
-                        err?console.log(err):console.log('html')
-                    })
+                    // fs.writeFile('index.html',htmlPage(staff),err=>{
+                    //     err?console.log(err):console.log('html')
+                    // })
+                    // const staff = fs.readFileSync('../createFile/staff.json')
+                    // const staff = require('../createFile/staff.json')
+                    console.log(staff)
+                    createFile.createFile('./src/createFile/index.html',htmlPage(staff),'HTML page created.',false)
                 }
                })
 
@@ -72,6 +82,5 @@ const addStaff = (currentRole='Manager') => {
 }
 
 module.exports = {
-    addStaff,
-    staff
+    addStaff
 };
