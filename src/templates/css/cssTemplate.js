@@ -1,4 +1,6 @@
-{
+const cssPage = () => {
+    return (
+`*{
     margin:0;
     padding:0;
     box-sizing: border-box;
@@ -53,4 +55,8 @@ header{
     .card{
         width:200px;
     }
+}`
+    )
 }
+
+module.exports = cssPage;

@@ -1,105 +1,158 @@
-// const Manager = require('./lib/manager');
-// const Engineer = require('./lib/engineer');
-// const Intern = require('./lib/intern');
-const addStaff = require('./src/addStaff/addStaff');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+const inquirer = require('inquirer')
+// const createFile = require('../createFile/createFile');
+const htmlPage = require('./src/templates/html/htmlPage');
+const cssPage = require('./src/templates/css/cssTemplate');
+const fs = require('fs');
+const path = require('path')
 
-// // const emp1 = new Employee();
-// const eng = new Engineer('mygithub','joe','email2');
-// const man = new Manager(1,'brian','email1')
-// const int = new Intern('RU','mark','gmail')
+const DIST_DIR = path.resolve(__dirname, 'dist');
+const htmlPath = path.join(DIST_DIR, 'team.html');
+const cssPath = path.join(DIST_DIR, 'style.css');
 
+// Staff stored in array for use in html file creation
+let staff =[]
+let idList = []
+let currentEmployee;
 
-// console.log(man1,emp2)
-// man1.getName()
-// const inquirer = require('inquirer');
-// const fs = require('fs');
+function createFile(){
+    if(!fs.existsSync(DIST_DIR)){
+        fs.mkdirSync(DIST_DIR);
+    }
+    fs.writeFileSync(htmlPath,htmlPage(staff),err=>{
+        err?console.log(err):console.log('\nHTML File Created\n')
+    })
+    fs.writeFileSync(cssPath,cssPage(),err=>{
+        err?console.log(err):console.log('\nCSS File Created\n')
+    })
+}
 
+// Waits for input before returning
+async function getBasicInfo (role) {
+    return await inquirer
+    .prompt([
+        {
+            type:'input',
+            name:'name',
+            message:`What is the ${role}'s name? `,
+            
+            // Ensures something is typed besides spaces
+            validate:(name)=>name.trim().length>0
+        },
+        {
+            type:'input',
+            name:'id',
+            message:`Enter the ID for the ${role}: `,
+            
+            // Ensures something is typed besides spaces
+            validate:(id)=>!idList.includes(id)?true:'That ID is already used, please enter another ID number.'
+        },
+        {
+            type:'input',
+            name:'email',
+            message:`What is the email address for the ${role}? `,
+            
+            // Validates the email based on the email pattern
+            validate:(email)=>{
+                mailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+                if (!mailPattern.test(email)){
+                    return 'Must be a valid email address'
+                }
+                return true
+            }
+        }]).then(answers=>{
+            // Removes any blank space at beginning or ending of the name or email
+            answers.name = answers.name.trim()
+            answers.email = answers.email.trim()
+            console.log('this',answers)
+            // Adds ID to list of IDs to prevent duplicates
+            idList.push(answers.id)
 
-// let a = "<html><head></head><body>"
-// y = x.map(item=>{
-    //     return(
-        //         `<div>
-        //             <h1>${item}</h1>
-        //         </div>`
-        //     )
-        // })
-        // let c ="</body></html>"
-        
-        // // console.log(y)
-        // let runAgain=true;
-        // function addStaff(currentRole='Manager'){
-        //     return inquirer
-        //         .prompt([
-        //             {
-        //                 type:'input',
-        //                 name:'name',
-        //                 message:'What is your name? '
-        //             },
-        //             {
-        //                 type:'input',
-        //                 name:'email',
-        //                 message:'What is your email? '
-        //             },
-        //             {
-        //                 type:'input',
-        //                 name:'location',
-        //                 message:(answers)=>{
-        //                     if(currentRole==='Manager'){
-        //                         return 'What is your office number?'
-        //                     }else if(currentRole==='Intern'){
-        //                         return 'What school do you go to?'
-        //                     }else{
-        //                         return 'What is your github?'
-        //                     }
-        //                 }
-        //             },
-        //             // {
-        //             //     type:'confirm',
-        //             //     name:'addStaff',
-        //             //     message:'Add more staff?'
-        //             // },
-        //             {
-        //                 type:'list',
-        //                 name:'addStaff',
-        //                 message:'If you would like to add more staff, please select what you need: ',
-        //                 choices:['Engineer','Intern','Never mind, no more staff needed']
-        //             }
-                    
-        //         ])
-        //         .then(answers=>{
-        //             console.log(answers)
-        //             let newEmployee;
-        //             if (currentRole==='Manager'){
-        //                 newEmployee = new Manager(answers.location,answers.name,answers.email)
-        //             }else if (currentRole === 'Engineer'){
-        //                 newEmployee = new Engineer(answers.location,answers.name,answers.email)
-        //             }else if (currentRole === 'Intern'){
-        //                 newEmployee = new Intern(answers.location,answers.name,answers.email)
-        //             }
-        //             staff.push(newEmployee)
-        //             // currentRole=answers.role
-        //             if(answers.addStaff!=='Never mind, no more staff needed'){
-        //                 addStaff(answers.addStaff)}
-                //    })
-                // })}
-                // let runAgain =true
-                // const newStaff =new Promise(addStaff())
-                // while (runAgain){
-        //     newStaff.then(answers=>{
-        //         if (!answers.addMore){
-        //             runAgain=false
-        //         }
-        //         staff.push(answers)
-        //     })
-        // }
+            currentEmployee = answers;
+            
+        }
+        )
+    }
 
-    // function createHTML(){
-        
-        // }
-        addStaff.addStaff()
-        // .then(()=>{
-        // })
-        // createHTML()
-        
-        
-        
+    function addEngineer(){
+        getBasicInfo('Engineer').then(()=>{
+            inquirer.prompt([
+                {
+                    type:'input',
+                    name:'github',
+                    message:`What is the Engineer's GitHub account? `
+                }
+            ]).then(roleInfo => {
+                const engineer = new Engineer(currentEmployee.name,currentEmployee.id,currentEmployee.email,roleInfo.github)
+                staff.push(engineer)
+                additionalStaff()
+            })
+
+        }
+
+        )
+    }
+
+    function addIntern(){
+        getBasicInfo('Intern').then(()=>{
+            inquirer.prompt([
+                {
+                    type:'input',
+                    name:'school',
+                    message:`What is the school does the Intern attend? `
+                }
+            ]).then(roleInfo => {
+                const intern = new Intern(currentEmployee.name,currentEmployee.id,currentEmployee.email,roleInfo.school)
+                staff.push(intern)
+                additionalStaff()
+            })
+        }
+
+        )
+    }
+
+    function additionalStaff () {
+        inquirer.prompt([
+            {
+                type:'list',
+                name:'moreStaff',
+                message:'Please select if you would like to add any additional staff: ',
+                choices:['Engineer','Intern','No additional staff needed']
+            }
+        ]).then(choice=>{
+            console.log(choice)
+            switch (choice.moreStaff){
+                case 'Engineer':
+                    addEngineer();
+                    break;
+                case 'Intern':
+                    addIntern();
+                    break;
+                default:
+                    createFile()
+            }
+        })
+    }
+    
+    function startTeamBuilding () {
+    console.log('\nWelcome to the Team Management System.  Please build your team.\n')
+    getBasicInfo('Manager').then(()=>{
+        inquirer.prompt([
+            {
+                type:'input',
+                name:'officeNumber',
+                message:`What is the Manager's office number? `
+            }
+        ]).then(roleInfo => {
+            const manager = new Manager(currentEmployee.name,currentEmployee.id,currentEmployee.email,roleInfo.officeNumber)
+            staff.push(manager)
+            additionalStaff()
+        })
+
+    })
+    // console.log(basicInfo)
+}
+
+startTeamBuilding()
