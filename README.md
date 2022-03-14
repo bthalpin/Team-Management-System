@@ -29,7 +29,7 @@ To install the necessary dependencies, run the following command:
 Clone the repo and install the depenecies.  Run the app with npm start, enter the information and the app will create the team.html and style.css file in the dist folder.
 
 ## Media
-[Team Management System Demo](https://watch.screencastify.com/v/6mH7eIOe3nYa2C4DMHc6)
+[Team Management System Demo](https://watch.screencastify.com/v/NP0P3SgVlLlBy0fHp7MO)
 
 The following image shows an example of the team layout:
 ![Team information displayed in cards](./assets/images/html.png)
