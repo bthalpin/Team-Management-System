@@ -4,7 +4,6 @@ const cssPage = () => {
     margin:0;
     padding:0;
     box-sizing: border-box;
-    color:white;
 }
 header{
     width:100vw;
@@ -17,6 +16,7 @@ header{
 header>h1{
     padding:1.5rem 0;
     background-color: rgb(81, 89, 114);
+    color:white;
 }
 
 .container{
@@ -36,17 +36,14 @@ header>h1{
 .card-head{
     background-color: rgb(46, 124, 226);
     padding:1.5rem;
-    
+    color:white;
     border-radius: 0.3rem 0.3rem 0 0;
 }
 .card-head>*{
     text-shadow: 0.2rem 0.2rem 0.5rem rgb(1, 1, 82);
 }
 .card-content{
-    /* height:80%; */
-    padding:1rem;
-
-    
+    padding:1rem;  
 }
 .card-content ul{
     list-style-type: none;
@@ -56,9 +53,10 @@ header>h1{
     margin:0.1rem 0;
     border:1px solid rgb(128, 128, 128);
     background-color: white;
-    color:black;
     border-radius: 0.2rem;
 }
+
+
 
 @media screen and (min-width:500px) {
     .card-container{

@@ -5,7 +5,8 @@ const card = (employee) =>{
     if (employee.getRole() === 'Manager'){
         roleSpecificVariable = 'Office Number: '+employee.getOfficeNumber();
     }else if (employee.getRole()==='Engineer'){
-        roleSpecificVariable = 'GitHub: '+employee.getGithub()
+        roleSpecificVariable = `GitHub: <a href='https://github.com/${employee.getGithub()}'>${employee.getGithub()}</a>`
+        
     }else{
         roleSpecificVariable = 'School: '+employee.getSchool()
     }
@@ -22,7 +23,7 @@ const card = (employee) =>{
                         <section>
                             <ul>
                                 <li>ID: ${employee.getId()}</li>
-                                <li>Email: ${employee.getEmail()}</li>
+                                <li>Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
                                 <li>${roleSpecificVariable}</li>
                             </ul>
                         </section>
