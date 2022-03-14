@@ -26,6 +26,9 @@ To install the necessary dependencies, run the following command:
 ## Usage
 Clone the repo and install the depenecies.  Run the app with npm start, enter the information and the app will create the team.html and style.css file in the dist folder.
 
+## Media
+The following image shows an example of the team layout:
+![Team information displayed in cards](./assets/images/html.png)
 ## License
 This product is licensed under MIT
 
