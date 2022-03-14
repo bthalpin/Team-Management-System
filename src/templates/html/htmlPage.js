@@ -3,7 +3,6 @@ const Card = require('./card');
 
 // Main HTML template, creates a component for each staff member in the array using the map method
 const htmlPage = (staff) =>{
-    console.log(staff,'here')
     return (
 `<!DOCTYPE html>
 <html lang="en">

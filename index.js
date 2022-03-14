@@ -66,7 +66,6 @@ async function getBasicInfo (role) {
             // Removes any blank space at beginning or ending of the name or email
             answers.name = answers.name.trim()
             answers.email = answers.email.trim()
-            console.log('this',answers)
             // Adds ID to list of IDs to prevent duplicates
             idList.push(answers.id)
 
@@ -122,7 +121,6 @@ async function getBasicInfo (role) {
                 choices:['Engineer','Intern','No additional staff needed']
             }
         ]).then(choice=>{
-            console.log(choice)
             switch (choice.moreStaff){
                 case 'Engineer':
                     addEngineer();
@@ -152,7 +150,6 @@ async function getBasicInfo (role) {
         })
 
     })
-    // console.log(basicInfo)
 }
 
 startTeamBuilding()
