@@ -18,7 +18,7 @@ header>h1{
 }
 
 .container{
-    margin:2rem;
+    margin:3rem;
     display: flex;
     justify-content: center;
 }
@@ -29,11 +29,12 @@ header>h1{
     box-shadow: 0.5rem 0.5rem 1rem black;
     background-color: white;
     border-radius:0.3rem;
+    background-color:rgb(226, 226, 226);
 }
 .card-head{
     background-color: rgb(46, 124, 226);
-    padding:1rem;
-    text-align: center;
+    padding:1.5rem;
+    
     border-radius: 0.3rem 0.3rem 0 0;
 }
 .card-head>*{
@@ -43,16 +44,18 @@ header>h1{
     /* height:80%; */
     padding:1rem;
 
-    background-color:rgb(226, 226, 226);
+    
 }
 .card-content ul{
     list-style-type: none;
 }
 .card-content li{
-    padding:0.3rem 1rem;
+    padding:0.7rem 1rem;
+    margin:0.1rem 0;
     border:1px solid rgb(128, 128, 128);
     background-color: white;
     color:black;
+    border-radius: 0.2rem;
 }
 
 @media screen and (min-width:500px) {

@@ -4,16 +4,23 @@ const cssPage = () => {
     margin:0;
     padding:0;
     box-sizing: border-box;
+    color:white;
 }
 header{
     width:100vw;
     height:100px;
-    background-color: aqua;
+    background-color: rgb(81, 89, 114);
     text-align: center;
+    text-shadow: 0.3rem 0.3rem 0.5rem black;
+    
+}
+header>h1{
+    padding:1.5rem 0;
+    background-color: rgb(81, 89, 114);
 }
 
 .container{
-    margin:2rem;
+    margin:3rem;
     display: flex;
     justify-content: center;
 }
@@ -21,29 +28,36 @@ header{
     
     width:90vw;
     margin:1rem;
-    min-height:15rem;
     box-shadow: 0.5rem 0.5rem 1rem black;
     background-color: white;
     border-radius:0.3rem;
+    background-color:rgb(226, 226, 226);
 }
 .card-head{
-    background-color: gray;
-    padding:1rem;
-    text-align: center;
+    background-color: rgb(46, 124, 226);
+    padding:1.5rem;
+    
     border-radius: 0.3rem 0.3rem 0 0;
 }
+.card-head>*{
+    text-shadow: 0.2rem 0.2rem 0.5rem rgb(1, 1, 82);
+}
 .card-content{
-    /* height:200px; */
-    padding:2rem;
-    background-color:antiquewhite;
+    /* height:80%; */
+    padding:1rem;
+
+    
 }
 .card-content ul{
     list-style-type: none;
 }
 .card-content li{
-    padding:0.3rem 1rem;
-    border:1px solid gray;
+    padding:0.7rem 1rem;
+    margin:0.1rem 0;
+    border:1px solid rgb(128, 128, 128);
     background-color: white;
+    color:black;
+    border-radius: 0.2rem;
 }
 
 @media screen and (min-width:500px) {
@@ -53,7 +67,7 @@ header{
         flex-wrap: wrap;
     }
     .card{
-        width:200px;
+        width:300px;
     }
 }`
     )

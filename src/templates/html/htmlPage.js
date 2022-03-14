@@ -11,12 +11,12 @@ const htmlPage = (staff) =>{
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>${staff[0].name.toUpperCase()}'s TEAM</title>
+        <title>${staff[0].name.toUpperCase()}'S TEAM</title>
         <link rel="stylesheet" href="./style.css">
     </head>
     <body>
         <header>
-            <h1>${staff[0].name.toUpperCase()}'s TEAM</h1>
+            <h1>${staff[0].name.toUpperCase()}'S TEAM</h1>
         </header>
         <main class="container">
             <section class="card-container">
